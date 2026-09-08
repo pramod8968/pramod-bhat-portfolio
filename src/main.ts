@@ -118,15 +118,15 @@ export class App implements OnDestroy {
       dates: "Feb 2023 — Present",
       location: "Bengaluru, India",
       bullets: [
-        'Backend Architecture: Built scalable Spring Boot microservices and RESTful APIs integrated with event-driven messaging systems.',
-        'Performance Tuning: Cleared a 450K+ Azure Service Bus message backlog by optimizing consumers with PEEK_LOCK.',
-        'Query Optimization: Enhanced execution speeds and database health by optimizing complex JPA/Hibernate queries.',
-        'Enterprise Security: Secured production API endpoints using Spring Security and Azure APIM OAuth 2.0 integration.',
-        'Frontend Engineering: Maintained multiple Angular applications; built a Mat-Table workflow updating 1000+ failed locations.',
-        'Production Support: Managed critical go-live cycles, high-priority defect resolution, and immediate bug hot-fixes.',
-        'Code Governance: Addressed vulnerabilities flagged in SonarQube, CodeQL, and Veracode to sustain 85%+ test coverage.',
-        'DevOps Automation: Built continuous delivery pipelines using Azure DevOps to ensure smooth multi-environment releases.',
-        'Test Automation: Authored automated test scripts using Java, Cucumber, and Selenium to boost test coverage by 25%.'
+        "Backend Architecture: Built scalable Spring Boot microservices and RESTful APIs integrated with event-driven messaging systems.",
+        "Performance Tuning: Cleared a 450K+ Azure Service Bus message backlog by optimizing consumers with PEEK_LOCK.",
+        "Query Optimization: Enhanced execution speeds and database health by optimizing complex JPA/Hibernate queries.",
+        "Enterprise Security: Secured production API endpoints using Spring Security and Azure APIM OAuth 2.0 integration.",
+        "Frontend Engineering: Maintained multiple Angular applications; built a Mat-Table workflow updating 1000+ failed locations.",
+        "Production Support: Managed critical go-live cycles, high-priority defect resolution, and immediate bug hot-fixes.",
+        "Code Governance: Addressed vulnerabilities flagged in SonarQube, CodeQL, and Veracode to sustain 85%+ test coverage.",
+        "DevOps Automation: Built continuous delivery pipelines using Azure DevOps to ensure smooth multi-environment releases.",
+        "Test Automation: Authored automated test scripts using Java, Cucumber, and Selenium to boost test coverage by 25%.",
       ],
     },
     {
@@ -167,6 +167,7 @@ export class App implements OnDestroy {
     name: ["", Validators.required],
     email: ["", [Validators.required, Validators.email]],
     message: ["", [Validators.required, Validators.minLength(10)]],
+    botcheck: [""],
   });
 
   submitContact(formDirective: any): void {
@@ -174,18 +175,56 @@ export class App implements OnDestroy {
       this.contactForm.markAllAsTouched();
       return;
     }
-    this.snackBar.open(
-      "Thanks for reaching out. I’ll be in touch soon.",
-      "Dismiss",
-      { 
-        duration: 4500,
-        panelClass: ["success-snackbar"],
-        verticalPosition: 'top',
-        horizontalPosition: 'center'
-      },
-    );
-    formDirective.resetForm();
-    this.contactForm.reset();
+
+    // Capture form values and append your secure access key token
+    const formData = new FormData();
+    formData.append("access_key", "47331e2d-e111-47e2-8cdc-3091571ceaa7");
+    formData.append("name", this.contactForm.controls.name.value);
+    formData.append("email", this.contactForm.controls.email.value);
+    formData.append("message", this.contactForm.controls.message.value);
+    // Honeypot anti-spam defense field string
+    formData.append("botcheck", this.contactForm.controls.botcheck.value || "");
+
+    //TARGET CORRECTION: Posts data to the live submit API path wrapper
+    fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          this.snackBar.open(
+            "Thanks for reaching out. I’ll be in touch soon.",
+            "Dismiss",
+            {
+              duration: 4500,
+              panelClass: ["success-snackbar"],
+              verticalPosition: "top",
+              horizontalPosition: "center",
+            },
+          );
+          // Reset layout states cleanly
+          formDirective.resetForm();
+          this.contactForm.reset();
+        } else {
+          this.snackBar.open(
+            "Something went wrong. Please try again.",
+            "Dismiss",
+            {
+              duration: 3000,
+              verticalPosition: "top",
+              horizontalPosition: "center",
+            },
+          );
+        }
+      })
+      .catch(() => {
+        this.snackBar.open("Network error. Please try again.", "Dismiss", {
+          duration: 3000,
+          verticalPosition: "top",
+          horizontalPosition: "center",
+        });
+      });
   }
 
   ngOnDestroy(): void {

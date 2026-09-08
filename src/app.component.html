@@ -3,7 +3,9 @@
       class="brand-name">Pramod Bhat</span></a>
   <nav aria-label="Main navigation"><a href="#about">About</a><a href="#experience">Experience</a><a
       href="#projects">Projects</a><a href="#contact">Contact</a></nav>
-  <a mat-stroked-button class="header-resume" href="https://drive.google.com/uc?export=download&id=1867q_UeXEwLhhgerCOUxUeBDHoaP-3FE" download="Pramod_Bhat_Resume.pdf">Resume</a>
+  <a mat-stroked-button class="header-resume"
+    href="https://drive.google.com/uc?export=download&id=1867q_UeXEwLhhgerCOUxUeBDHoaP-3FE"
+    download="Pramod_Bhat_Resume.pdf">Resume</a>
 </header>
 
 <main id="top">
@@ -22,9 +24,7 @@
       <div class="orbit orbit-one"></div>
       <div class="orbit orbit-two"></div>
       <div class="portrait-card">
-        <img src="assets/Pramod_Bhat_Portfolio_Image.jpeg" 
-         alt="Pramod Bhat" 
-         class="portrait-actual-photo">
+        <img src="assets/Pramod_Bhat_Portfolio_Image.jpeg" alt="Pramod Bhat" class="portrait-actual-photo">
         <div class="portrait-caption"><span>PRAMOD BHAT</span><small>JAVA FULL-STACK DEVELOPER</small></div>
       </div>
       <div class="floating-note note-top"><span class="note-icon">&#9729;</span><span>Azure<br /><b>Cloud
@@ -104,15 +104,15 @@
             <!-- Right corner clickable repository arrows container -->
             <div class="kicker-arrows-group">
               <!-- FRONTEND REPOSITORY ARROW -->
-              <a href="https://github.com/pramod8968/QueryConnect-Angular" target="_blank" title="View Frontend (Angular) Codebase"
-                class="kicker-arrow-link">
+              <a href="https://github.com/pramod8968/QueryConnect-Angular" target="_blank"
+                title="View Frontend (Angular) Codebase" class="kicker-arrow-link">
                 ↗
               </a>
 
               <!-- BACKEND REPOSITORY ARROW -->
               <!-- Replace the href below with your actual Spring Boot backend repository URL -->
-              <a href="https://github.com/pramod8968/QueryConnect-Backend-Springboot" target="_blank" title="View Backend (Spring Boot) Codebase"
-                class="kicker-arrow-link backend-arrow">
+              <a href="https://github.com/pramod8968/QueryConnect-Backend-Springboot" target="_blank"
+                title="View Backend (Spring Boot) Codebase" class="kicker-arrow-link backend-arrow">
                 ↗
               </a>
             </div>
@@ -174,15 +174,18 @@
       <p>Have a challenging product, an ambitious team, or simply want to talk engineering? My inbox is always open.</p>
       <a class="contact-email" href="mailto:pramodbhat2412@gmail.com">pramodbhat2412@gmail.com &#8599;</a>
       <div class="social-links"><a href="https://www.linkedin.com/in/pramod-bhat-0985151b4/" target="_blank"
-          rel="noreferrer">LinkedIn &#8599;</a><a href="https://github.com/pramod8968" target="_blank" rel="noreferrer">GitHub
+          rel="noreferrer">LinkedIn &#8599;</a><a href="https://github.com/pramod8968" target="_blank"
+          rel="noreferrer">GitHub
           &#8599;</a></div>
     </div><mat-card class="contact-card">
       <form [formGroup]="contactForm" #formDirective="ngForm" (ngSubmit)="submitContact(formDirective)">
         <div class="form-row"><mat-form-field appearance="outline"><mat-label>Your name</mat-label><input matInput
               formControlName="name" /><mat-error>Name is required</mat-error></mat-form-field><mat-form-field
             appearance="outline"><mat-label>Email address</mat-label><input matInput type="email"
-              formControlName="email" /><mat-error>Enter a valid email</mat-error></mat-form-field></div><mat-form-field
-          appearance="outline"><mat-label>How can I help?</mat-label><textarea matInput rows="5"
+              formControlName="email" /><mat-error>Enter a valid email</mat-error></mat-form-field></div>
+        <!-- 🎯 ANTI-SPAM LAYER INSTALLED HERE -->
+        <input type="checkbox" name="botcheck" formControlName="botcheck" style="display: none !important;">
+        <mat-form-field appearance="outline"><mat-label>How can I help?</mat-label><textarea matInput rows="5"
             formControlName="message"></textarea><mat-error>Tell me a little about your
             idea</mat-error></mat-form-field><button mat-flat-button color="primary" type="submit">Send message</button>
       </form>
