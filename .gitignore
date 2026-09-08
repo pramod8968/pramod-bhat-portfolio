@@ -1,0 +1,19 @@
+# Local Angular cache and compilation dependencies
+.angular/
+dist/
+node_modules/
+.env
+
+# MacOS system artifacts 
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Local development IDE overrides
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
