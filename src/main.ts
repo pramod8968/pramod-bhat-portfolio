@@ -114,7 +114,7 @@ export class App implements OnDestroy {
   readonly experiences: Experience[] = [
     {
       company: "Ness Digital Engineering",
-      role: "Development Engineer / SDE",
+      role: "Senior Engineer - Development (Previously Engineer - Development & Software Engineer - Trainee)",
       dates: "Feb 2023 — Present",
       location: "Bengaluru, India",
       bullets: [
@@ -122,6 +122,7 @@ export class App implements OnDestroy {
         "Performance Tuning: Cleared a 450K+ Azure Service Bus message backlog by optimizing consumers with PEEK_LOCK.",
         "Query Optimization: Enhanced execution speeds and database health by optimizing complex JPA/Hibernate queries.",
         "Enterprise Security: Secured production API endpoints using Spring Security and Azure APIM OAuth 2.0 integration.",
+        "AI Assisted Development: Leveraged GitHub Copilot for AI-assisted development, speeding up coding, debugging, and unit testing.",
         "Frontend Engineering: Maintained multiple Angular applications; built a Mat-Table workflow updating 1000+ failed locations.",
         "Production Support: Managed critical go-live cycles, high-priority defect resolution, and immediate bug hot-fixes.",
         "Code Governance: Addressed vulnerabilities flagged in SonarQube, CodeQL, and Veracode to sustain 85%+ test coverage.",
@@ -131,7 +132,7 @@ export class App implements OnDestroy {
     },
     {
       company: "Cloudwerx Solutions India",
-      role: "Salesforce Developer",
+      role: "Salesforce Developer - Trainee",
       dates: "Jul 2022 — Dec 2022",
       location: "Pune, India",
       bullets: [
